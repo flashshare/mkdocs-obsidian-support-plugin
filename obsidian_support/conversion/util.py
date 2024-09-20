@@ -4,6 +4,7 @@ from typing import Tuple, List
 
 CODE_BLOCK_PATTERN = re.compile(r'(?P<code_block>^[`~]{3,})(?P<language>[a-zA-Z\-]*)?', re.MULTILINE)
 BACKQUOTES_CODE_PATTERN = re.compile(r"`[^\n`]+`")
+HTML_TAG_PATTERN = re.compile(r'<(?P<tag>\S*?)[\s\S]*?>[\s\S]*?</\1>')
 
 
 @dataclasses.dataclass
@@ -69,6 +70,12 @@ def get_exclude_indices(markdown: str) -> List[Tuple[int, int]]:
     for code_match in re.finditer(BACKQUOTES_CODE_PATTERN, markdown):
         if not is_overlapped(code_match.start(), code_match.end(), exclude_indices):
             exclude_indices.append((code_match.start(), code_match.end()))
+
+    # step 4
+    # exclude html tag
+    for html_tag_match in HTML_TAG_PATTERN.finditer(markdown):
+        if not is_overlapped(html_tag_match.start(), html_tag_match.end(), exclude_indices):
+            exclude_indices.append((html_tag_match.start(), html_tag_match.end()))
 
     return exclude_indices
 
