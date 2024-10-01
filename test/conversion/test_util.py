@@ -222,17 +222,3 @@ def test_get_exclude_indices_6():
 
     # then
     print(exclude_indices)
-
-
-def test_get_exclude_indices_7():
-    # given
-    markdown = cleandoc("""
-    example <span style="background:#ff4d4f">highlighted</span> text
-    """)
-
-    # when
-    exclude_indices = get_exclude_indices(markdown)
-
-    # then
-    assert_that(exclude_indices[0][0]).is_equal_to(markdown.index("<span "))
-    assert_that(exclude_indices[0][1]).is_equal_to(markdown.index("</span>") + len("</span>"))

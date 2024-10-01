@@ -10,8 +10,6 @@ from obsidian_support.conversion.abstract_conversion import AbstractConversion
 from obsidian_support.conversion.admonition.admonition_backquotes import AdmonitionBackquotesConversion
 from obsidian_support.conversion.admonition.admonition_callout import AdmonitionCalloutConversion
 from obsidian_support.conversion.comment.comment import CommentConversion
-from obsidian_support.conversion.image_link.image_internal_link import ImageInternalLinkConversion
-from obsidian_support.conversion.image_link.image_web_link import ImageWebLinkConversion
 from obsidian_support.conversion.pdf.pdf import PdfConversion
 from obsidian_support.conversion.tabs.tabs_backquotes import TabsBackquotesConversion
 from obsidian_support.conversion.tabs.tabs_tilde_block import TabsTildeBlockConversion
@@ -35,16 +33,6 @@ def test_admonition_backquotes_conversion(test):
 @pytest.mark.parametrize("test", ['basic'])
 def test_comment_conversion(test):
     assert_template("comment", test, CommentConversion())
-
-
-@pytest.mark.parametrize("test", ['basic', 'size', 'caption', 'size_caption'])
-def test_image_internal_link_conversion(test):
-    assert_template("image_link/image_internal_link", test, ImageInternalLinkConversion())
-
-
-@pytest.mark.parametrize("test", ['basic', 'escape'])
-def test_image_web_link_conversion(test):
-    assert_template("image_link/image_web_link", test, ImageWebLinkConversion())
 
 
 @pytest.mark.parametrize("test", ['basic'])

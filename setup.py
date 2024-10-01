@@ -2,7 +2,7 @@ import os
 
 from setuptools import setup, find_packages
 
-VERSION_NUMBER = '1.4.1'
+VERSION_NUMBER = '1.3.3'
 
 
 def read_file(fname):
@@ -22,7 +22,8 @@ setup(
     license='MIT',
     python_requires='>=2.7',
     install_requires=[
-        'mkdocs>=1.0.4'
+        'mkdocs>=1.0.4',
+        'overrides~=7.7.0'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
